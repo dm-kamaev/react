@@ -61,6 +61,13 @@ var TestInput = React.createClass({
   // В официальной документации очень хороший пример, пожалуй скопирую его
   // Так же, если вы вызываете setState внутри этого метода -
   // не будет вызван дополнительный render.+
+  // shouldComponentUpdate - должен ли компонент обновиться?
+  // На самом деле, обычно реакт сам отлично разбирается.
+  // Но иногда ручное управление позволяет существенно ускорить работу в "узких местах".
+  // С этим методом нужно работать очень аккуратно.+
+  // componentWillUpdate   - вызывается прямо перед render, когда новые props и state получены. В этом методе нельзя вызывать setState.
+  // componentDidUpdate    - вызывается сразу после render. Не вызывается в момент первого render'а компонента.
+  // componentWillUnmount  - вызывается сразу перед тем, как компонент будет удален из DOM.
   componentWillReceiveProps: function (nextProps) {
     this.setState({
        likesIncreasing: nextProps.likeCount > this.props.likeCount
